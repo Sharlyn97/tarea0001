@@ -6,6 +6,7 @@
 package Vista;
 
 import Controlador.Controlador_FRM_RegistrarCursos;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -24,7 +25,7 @@ public class FRM_RegistrarCurso extends javax.swing.JFrame {
         setVisible(false);
      
     controladorRegistrarCursos=new Controlador_FRM_RegistrarCursos(this);
-    gUI_Botones1.agregarEventosCurso(controladorRegistrarCursos);
+    this.gUI_Botones1.agregarEventosCurso(controladorRegistrarCursos);
         
     }
     
@@ -36,10 +37,7 @@ public class FRM_RegistrarCurso extends javax.swing.JFrame {
     {
         return this.gUI_RegistrarCurso2.devolverSiglasCurso();
     }
-    public String devolverCreditos()
-    {
-        return this.gUI_RegistrarCurso2.devolverCreditosCursos();
-    }
+
     public String[] devolverInformacion()
     {
         return this.gUI_RegistrarCurso2.devolverInformacion();
@@ -48,13 +46,14 @@ public class FRM_RegistrarCurso extends javax.swing.JFrame {
     {
         this.gUI_RegistrarCurso2.mostrarInformacion(arreglo);
     }
-    public void mostrarInformacionCurso(int arreglo[])
-    {
-        this.gUI_RegistrarCurso2.mostrarInformacionCurso(arreglo);
-    }
+
     public void modificoInformacion()
     {
         this.gUI_RegistrarCurso2.modifico();
+    }
+     public void mostrarMensaje(String mensaje)
+    {
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 
     /**
@@ -70,6 +69,7 @@ public class FRM_RegistrarCurso extends javax.swing.JFrame {
         gUI_RegistrarCurso2 = new Vista.GUI_RegistrarCurso();
 
         setPreferredSize(new java.awt.Dimension(375, 340));
+        setResizable(false);
         getContentPane().setLayout(null);
         getContentPane().add(gUI_Botones1);
         gUI_Botones1.setBounds(0, 150, 380, 150);

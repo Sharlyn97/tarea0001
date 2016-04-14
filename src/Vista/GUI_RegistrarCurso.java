@@ -16,6 +16,19 @@ public class GUI_RegistrarCurso extends javax.swing.JPanel {
      */
     public GUI_RegistrarCurso() {
         initComponents();
+        cargarCreditos();
+    }
+    
+    public void cargarCreditos()
+    {
+        this.jcb_Creditos.removeAllItems();
+        for(int contador=0; contador<10; contador++)
+        {
+            this.jcb_Creditos.addItem(""+contador);
+            
+        }
+        
+        this.jcb_Creditos.setSelectedIndex(4);
     }
     
     public String[] devolverInformacion()
@@ -25,7 +38,7 @@ public class GUI_RegistrarCurso extends javax.swing.JPanel {
         
         arreglo[0]=this.jt_NombreCurso.getText();
         arreglo[1]=this.jt_SiglasCurso.getText();
-        arreglo[2]=this.jt_Creditos.getText();
+        arreglo[2]=""+this.jcb_Creditos.getSelectedIndex();
         
         return arreglo;
     }
@@ -37,27 +50,18 @@ public class GUI_RegistrarCurso extends javax.swing.JPanel {
     {
         return this.jt_SiglasCurso.getText();
     }
-    public String devolverCreditosCursos()
-    {
-        return this.jt_Creditos.getText();
-    }
+    
      public void mostrarInformacion(String arreglo[])
     {
         this.jt_NombreCurso.setText(arreglo[0]);
-        //this.jt_Creditos.setText(arreglo[1]);
-        
-    }
-     public void mostrarInformacionCurso(int arregloCurso[])
-    {
-        
-        this.jt_Creditos.setText(Integer.toString(arregloCurso[0]));
+        this.jcb_Creditos.setSelectedIndex(Integer.parseInt(arreglo[1]));
         
     }
      public void modifico()
      {
          this.jt_SiglasCurso.setText("");
          this.jt_NombreCurso.setText("");
-         this.jt_Creditos.setText("");
+//         this.jt_Creditos.setText("");
      }
 
     /**
@@ -74,7 +78,7 @@ public class GUI_RegistrarCurso extends javax.swing.JPanel {
         jl_creditos = new javax.swing.JLabel();
         jt_NombreCurso = new javax.swing.JTextField();
         jt_SiglasCurso = new javax.swing.JTextField();
-        jt_Creditos = new javax.swing.JTextField();
+        jcb_Creditos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(372, 300));
@@ -95,8 +99,10 @@ public class GUI_RegistrarCurso extends javax.swing.JPanel {
         jt_NombreCurso.setBounds(160, 60, 190, 27);
         add(jt_SiglasCurso);
         jt_SiglasCurso.setBounds(160, 20, 190, 32);
-        add(jt_Creditos);
-        jt_Creditos.setBounds(160, 100, 190, 31);
+
+        jcb_Creditos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jcb_Creditos);
+        jcb_Creditos.setBounds(160, 100, 190, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/TareaProgra2.png"))); // NOI18N
         add(jLabel1);
@@ -106,10 +112,10 @@ public class GUI_RegistrarCurso extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> jcb_Creditos;
     private javax.swing.JLabel jl_NombreCurso;
     private javax.swing.JLabel jl_creditos;
     private javax.swing.JLabel jl_siglasCurso;
-    private javax.swing.JTextField jt_Creditos;
     private javax.swing.JTextField jt_NombreCurso;
     private javax.swing.JTextField jt_SiglasCurso;
     // End of variables declaration//GEN-END:variables

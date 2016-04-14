@@ -14,131 +14,110 @@ import javax.swing.JOptionPane;
  */
 public class MetodosCurso { 
     ArrayList <Curso> arrayCurso;
-    public int vueltasRegistrar=0;
+     int vueltasRegistrar=0;
+     String arregloDatos[];
     
  public MetodosCurso()
  {
      arrayCurso=new ArrayList <Curso>();
+     arregloDatos=new String[2];
  }
  
  //metodos
  
- public void agregarCurso(String informacion[],String siglasCurso)
+ public boolean agregarCurso(String informacion[])//String siglasCurso
  {
      boolean cursoRepetido=false;
+     boolean agrego=false;
      Curso temporal=new Curso(informacion[0], informacion[1], Integer.parseInt(informacion[2]));
      
      if(vueltasRegistrar==0)
      {
         arrayCurso.add(temporal);
         vueltasRegistrar=1;
-        JOptionPane.showMessageDialog(null,"El curso se registró correctamente");
+        agrego=true;
      }
      else
      {
          for(int contador=0; contador<arrayCurso.size(); contador++)
          {
-           if(arrayCurso.get(contador).getSiglas().equals(siglasCurso))  
+        System.out.println("Siglas contador: "+arrayCurso.get(contador).getSiglas()+" 2.siglas usuario: "+informacion[1]);
+           if(arrayCurso.get(contador).getSiglas().equals(informacion[1]))  
            {
                cursoRepetido=true;
            }
+
          }
       if(cursoRepetido)
         {
-                    JOptionPane.showMessageDialog(null,"Este curso ya existe"); 
+                    //JOptionPane.showMessageDialog(null,"Yo estoy diciendo que ya existe :p"); 
          }
       else
         {
                     arrayCurso.add(temporal);
-                    JOptionPane.showMessageDialog(null,"El curso se registró correctamente");
                     cursoRepetido=false;
+                    agrego=true;
         }
      }     
+     return agrego;
  }
 
- public void modificarCurso(String nombreCurso, String siglasCurso, String creditos)//revisar creditos
+ public boolean modificarCurso(String informacion[])//revisar creditos[]
  {
-     int creditosInt;
-     int vueltas=0;
+     boolean modifico=false;
+     
      for(int contador=0; contador<arrayCurso.size(); contador++)
      {
-         if(arrayCurso.get(contador).getSiglas().equals(siglasCurso))
+         if(arrayCurso.get(contador).getSiglas().equals(informacion[1]))
          {
-             arrayCurso.get(contador).setNombre(nombreCurso);
-             creditosInt=Integer.parseInt(creditos);
-             arrayCurso.get(contador).setCreditos(creditosInt);
-             JOptionPane.showMessageDialog(null,"El curso se modificó correctamente");
+             arrayCurso.get(contador).setNombre(informacion[0]);
+             arrayCurso.get(contador).setCreditos(Integer.parseInt(informacion[2]));
+             modifico=true;
          }
-         else
-         {
-             vueltas++;
-             if(vueltas==arrayCurso.size())
-             {
-                JOptionPane.showMessageDialog(null,"El curso no existe");   
-             }
-         }
+        // System.out.println("Siglas contador: "+arrayCurso.get(contador).getSiglas()+" 2.siglas usuario: "+informacion[1]);
      }
+     return modifico;
  }
- public String[] consultarCurso(String siglasCurso) 
+ 
+ public boolean consultarCurso(String siglasCurso) 
  {
-     String arregloDatos[]=new String[1];
-     
-     
+     boolean consulto=false;
      for(int contador=0; contador<arrayCurso.size(); contador++)
      {
          //System.out.println(arrayCurso.get(contador).getNombre());
          if(arrayCurso.get(contador).getSiglas().equals(siglasCurso))
         {
             arregloDatos[0]=arrayCurso.get(contador).getNombre();
-           // System.out.println(arrayCurso.get(contador).getNombre());
+            arregloDatos[1]=""+arrayCurso.get(contador).getCreditos();
+            consulto=true;
         }
-         
      }
      
-    return arregloDatos;
- }
-  public int[] consultarCursoCreditos(String siglasCurso) 
- {
-     int arregloDatosCreditos[]=new int[1];
-     int vueltas=0;
-     for(int contador=0; contador<arrayCurso.size(); contador++)
-     {
-         if(arrayCurso.get(contador).getSiglas().equals(siglasCurso))
-        {
-            arregloDatosCreditos[0]=arrayCurso.get(contador).getCreditos(); 
-        }
-         else
-         {
-             vueltas++;
-             if(vueltas==arrayCurso.size())
-             {
-                JOptionPane.showMessageDialog(null,"El curso no existe");   
-             }
-         }
-     }
-     
-    return arregloDatosCreditos;
+    return consulto;
  }
  
- public void eliminarCurso(String siglasCurso)
+ public boolean  eliminarCurso(String siglasCurso)
  {
      int vueltas=0;
+     boolean eliminado=false;
      for(int contador=0; contador<arrayCurso.size(); contador++)
      {
          if(arrayCurso.get(contador).getSiglas().equals(siglasCurso))
          {
              arrayCurso.remove(contador);
-             JOptionPane.showMessageDialog(null,"El curso se ha eliminado correctamente");
+             eliminado=true;
+             //JOptionPane.showMessageDialog(null,"El curso se ha eliminado correctamente");
          }
          else
          {
              vueltas++;
              if(vueltas==arrayCurso.size())
              {
-                JOptionPane.showMessageDialog(null,"El curso no existe");   
+               // JOptionPane.showMessageDialog(null,"El curso no existe");   
              }
          }
      }
+     return eliminado;
  }
  public void mostrarInformacion()
  {
@@ -147,4 +126,8 @@ public class MetodosCurso {
      System.out.println(temporal.getInformacion());
  }
  
+ public String[] getArregloInformacion()
+    {
+        return this.arregloDatos;
+    }
 }

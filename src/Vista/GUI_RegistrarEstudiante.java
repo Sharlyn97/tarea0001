@@ -48,6 +48,24 @@ public class GUI_RegistrarEstudiante extends javax.swing.JPanel {
         this.jt_Nombre.setText("");
         this.jt_Carnet.setText("");
     }
+    public void estadoInicial()
+    {
+        this.jt_Carnet.setEnabled(true);
+        this.jt_Nombre.setEnabled(false);
+    }
+    public void habilitarAgregar()
+    {
+        this.jt_Nombre.setEnabled(true);
+    }
+    public void DeshabilitarCedula()
+    {
+        this.jt_Carnet.setEnabled(false);
+    }
+    public void habilitarNombre()
+    {
+        this.jt_Nombre.setEnabled(true);
+    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -79,6 +97,11 @@ public class GUI_RegistrarEstudiante extends javax.swing.JPanel {
                 jt_CarnetActionPerformed(evt);
             }
         });
+        jt_Carnet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jt_CarnetKeyPressed(evt);
+            }
+        });
         add(jt_Carnet);
         jt_Carnet.setBounds(120, 30, 177, 33);
         add(jt_Nombre);
@@ -92,6 +115,10 @@ public class GUI_RegistrarEstudiante extends javax.swing.JPanel {
     private void jt_CarnetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jt_CarnetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jt_CarnetActionPerformed
+
+    private void jt_CarnetKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jt_CarnetKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jt_CarnetKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

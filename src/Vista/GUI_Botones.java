@@ -38,6 +38,22 @@ public class GUI_Botones extends javax.swing.JPanel {
         this.jb_Eliminar.addActionListener(controladorCursos);
         this.jb_Consultar.addActionListener(controladorCursos);
     }
+    public void estadoInicial()
+     {
+         this.jb_Consultar.setEnabled(true);
+         this.jb_Eliminar.setEnabled(false);
+         this.jb_Modificar.setEnabled(false);
+         this.jb_Registrar.setEnabled(false);
+     }
+    public void habiliarAgregar()
+    {
+        this.jb_Registrar.setEnabled(true);
+    }
+     public void habilitarOpciones()
+    {
+        this.jb_Modificar.setEnabled(true);
+        this.jb_Eliminar.setEnabled(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

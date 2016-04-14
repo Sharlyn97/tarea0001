@@ -7,6 +7,7 @@
 package Vista;
 
 import Controlador.Controlador_FRM_RegistrarEstudiantes;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,10 +19,10 @@ public class FRM_RegistrarEstudiantes extends javax.swing.JFrame {
     
     public FRM_RegistrarEstudiantes() {
         initComponents();
-        setVisible(false);
-        
+        setVisible(false);    
     controladorRegistrarEstudiantes=new Controlador_FRM_RegistrarEstudiantes(this); 
     gUI_Botones1.agregarEventos(controladorRegistrarEstudiantes);
+    estadoInicial();
     }
 
     public String devolverCarnet()
@@ -44,7 +45,29 @@ public class FRM_RegistrarEstudiantes extends javax.swing.JFrame {
     {
         this.gUI_RegistrarEstudiante1.modifico();
     }
-    
+     public void estadoInicial()
+    {
+        this.gUI_RegistrarEstudiante1.estadoInicial();
+        this.gUI_Botones1.estadoInicial();
+    }
+    public void habilitarAgregar()
+    {
+        this.gUI_Botones1.habiliarAgregar();
+        this.gUI_RegistrarEstudiante1.habilitarAgregar();
+    }
+    public void deshabilitarCedula()
+    {
+        this.gUI_RegistrarEstudiante1.DeshabilitarCedula();
+    }
+    public void habilitarOpciones()
+    {
+        this.gUI_Botones1.habilitarOpciones();
+        this.gUI_RegistrarEstudiante1.habilitarNombre();
+    }
+    public void mostrarMensaje(String mensaje)
+    {
+        JOptionPane.showMessageDialog(null, mensaje);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

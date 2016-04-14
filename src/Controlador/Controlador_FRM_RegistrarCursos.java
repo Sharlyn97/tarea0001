@@ -9,6 +9,7 @@ import Modelo.MetodosCurso;
 import Vista.FRM_RegistrarCurso;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -30,28 +31,57 @@ public Controlador_FRM_RegistrarCursos(FRM_RegistrarCurso registrarCurso)
        
     if(e.getActionCommand().equals("Registrar"))
     {
-        metodos.agregarCurso(registrarCurso.devolverInformacion(), registrarCurso.devolverSiglasCurso());
-        //metodos.mostrarInformacion();
+        if(metodos.agregarCurso((registrarCurso.devolverInformacion())))
+        {
+        metodos.agregarCurso(registrarCurso.devolverInformacion());
         registrarCurso.modificoInformacion();
-        //System.out.println("registrar");
+        registrarCurso.mostrarMensaje("Registró correctamente");
+        }
+        else
+        {
+         registrarCurso.mostrarMensaje("Por alguna falla en el sistema no se correctamente registró");
+        }
     }
     if(e.getActionCommand().equals("Modificar"))
     {
-        metodos.modificarCurso(registrarCurso.devolverNombreCurso(), registrarCurso.devolverSiglasCurso(), registrarCurso.devolverCreditos());
+        if(metodos.modificarCurso((registrarCurso.devolverInformacion())))
+        {
+        metodos.modificarCurso(registrarCurso.devolverInformacion());
         registrarCurso.modificoInformacion();
-        //System.out.println("modificar");
+        registrarCurso.mostrarMensaje("Se modificó correctamente");
+        }
+        else
+        {
+        registrarCurso.mostrarMensaje("No se modificó correctamente");
+
+        }
+
     }
     if(e.getActionCommand().equals("Consultar"))
     {
-        registrarCurso.mostrarInformacion((metodos.consultarCurso(registrarCurso.devolverSiglasCurso())));
-        registrarCurso.mostrarInformacionCurso((metodos.consultarCursoCreditos(registrarCurso.devolverSiglasCurso())));
-     
-        //System.out.println("consultar");
+        if(metodos.consultarCurso((registrarCurso.devolverSiglasCurso())))
+        {
+        registrarCurso.mostrarInformacion((metodos.getArregloInformacion()));
+        registrarCurso.mostrarMensaje("Se encontró el curso");
+        }
+        else
+        {
+           registrarCurso.mostrarMensaje("Este curso no existe"); 
+           registrarCurso.modificoInformacion();
+        }
     }
     if(e.getActionCommand().equals("Eliminar"))
     {
-        metodos.eliminarCurso(registrarCurso.devolverSiglasCurso());
+       if(metodos.eliminarCurso(registrarCurso.devolverSiglasCurso()))
+       {
         registrarCurso.modificoInformacion();
+        registrarCurso.mostrarMensaje("Se eliminó correctamente");
+       }
+       else
+       {
+           registrarCurso.mostrarMensaje("Este curso no existe"); 
+           registrarCurso.modificoInformacion();
+       }
         //System.out.println("eliminar");
     }
 }
